@@ -9,16 +9,7 @@ public class Credits extends JFrame
         
 
 
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
