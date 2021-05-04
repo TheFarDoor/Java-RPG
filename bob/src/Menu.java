@@ -10,7 +10,8 @@ public class Menu extends JFrame implements ActionListener
         JPanel panel = new JPanel();
         panel.setBackground(Color.black);
         panel.setLayout(null);
-
+        
+        //make buttons
         JButton playButton = new JButton("Play");
         playButton.setBackground(Color.WHITE);
         playButton.setBounds(180,375,200,60);
@@ -38,7 +39,8 @@ public class Menu extends JFrame implements ActionListener
         secretButton.setBorderPainted(false);
         secretButton.setBounds(380,435,20,10);
         panel.add(secretButton);
-
+        
+        //make entry field
         JLabel labelName = new JLabel("Enter Name :");
         labelName.setBounds(50,300,100,100);
 
