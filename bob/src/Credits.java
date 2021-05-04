@@ -5,14 +5,12 @@ import java.io.*;
 
 public class Credits extends JFrame
 {
-    public Credits() {
+
         
 
 
 
 
-
-    }
 
 
 
