@@ -5,12 +5,21 @@ import java.io.*;
 
 public class Menu extends JFrame implements ActionListener
 {
+    private ImageIcon backgroundImage;
+    private JLabel myLabel;
     public Menu() {
         //make panel
         JPanel panel = new JPanel();
         panel.setBackground(Color.black);
         panel.setLayout(null);
-        
+
+        //set background image
+        backgroundImage = new ImageIcon(this.getClass().getResource("/gronark_bgi_finished.png"));
+        myLabel = new JLabel(backgroundImage);
+        myLabel.setSize(600,450);
+        panel.add(myLabel);
+
+
         //make buttons
         JButton playButton = new JButton("Play");
         playButton.setBackground(Color.WHITE);
@@ -39,13 +48,28 @@ public class Menu extends JFrame implements ActionListener
         secretButton.setBorderPainted(false);
         secretButton.setBounds(380,435,20,10);
         panel.add(secretButton);
-        
+
         //make entry field
-        JLabel labelName = new JLabel("Enter Name :");
-        labelName.setBounds(50,300,100,100);
+        JTextField userNameField = new JTextField("Username");
+        Font f2 = new Font("SansSerif", Font.BOLD, 15);
+        userNameField.setFont(f2);
+        userNameField.setBounds(240, 100, 310, 60);
+        userNameField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(userNameField.getText().equals("Username")) {
+                    userNameField.setText("");
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(userNameField.getText().equals("")){
+                    userNameField.setText("Username");
+                }
+            }
+        });
 
-
-
+        panel.add(userNameField);
 
         //make frame
         setTitle("Gronark: The Rebirth");
@@ -55,6 +79,7 @@ public class Menu extends JFrame implements ActionListener
         setResizable(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         add(panel);
+
     }
 
     @Override
