@@ -13,12 +13,8 @@ public class Menu extends JFrame implements ActionListener
         panel.setBackground(Color.black);
         panel.setLayout(null);
 
-        //set background image
-        backgroundImage = new ImageIcon(this.getClass().getResource("/gronark_bgi_finished.png"));
-        myLabel = new JLabel(backgroundImage);
-        myLabel.setSize(600,450);
-        panel.add(myLabel);
-
+        //make font for the main menu
+        Font f2 = new Font("SansSerif", Font.BOLD, 15);
 
         //make buttons
         JButton playButton = new JButton("Play");
@@ -51,9 +47,8 @@ public class Menu extends JFrame implements ActionListener
 
         //make entry field
         JTextField userNameField = new JTextField("Username");
-        Font f2 = new Font("SansSerif", Font.BOLD, 15);
         userNameField.setFont(f2);
-        userNameField.setBounds(240, 100, 310, 60);
+        userNameField.setBounds(240, 160, 310, 60);
         userNameField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -70,6 +65,32 @@ public class Menu extends JFrame implements ActionListener
         });
 
         panel.add(userNameField);
+
+        JPasswordField passwordField = new JPasswordField("Username");
+        passwordField.setFont(f2);
+        passwordField.setBounds(240, 230, 310, 60);
+        passwordField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(passwordField.getText().equals("Username")) {
+                    passwordField.setText("*");
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(passwordField.getText().equals("")){
+                    passwordField.setText("Username");
+                }
+            }
+        });
+
+        panel.add(passwordField);
+
+        //set background image
+        backgroundImage = new ImageIcon(this.getClass().getResource("/gronark_bgi_finished.png"));
+        myLabel = new JLabel(backgroundImage);
+        myLabel.setSize(600,450);
+        panel.add(myLabel);
 
         //make frame
         setTitle("Gronark: The Rebirth");
