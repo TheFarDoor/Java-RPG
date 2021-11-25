@@ -22,15 +22,19 @@ public class Login extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(loginPanel);
 
-        //set background image
-        setLayout(new BorderLayout());
-        backgroundImage = new ImageIcon(this.getClass().getResource("/gronark_bgi_finished.png"));
-        myLabel = new JLabel(backgroundImage);
-        setLocationRelativeTo(null);
-        myLabel.setSize(800,590);
+        //make Login menu where if the user has a login in the database they will be logged into the game
+        JButton loginButton = new JButton("Login");
+        loginButton.setFont(Menu.f2);
+        loginButton.setBackground(Color.WHITE);
+        loginButton.setBounds(180,375,200,60);
+        loginPanel.add(loginButton);
 
-        loginPanel.add(myLabel);
-
+        //make Register button that adds the login of the user to the database
+        JButton regButton = new JButton("Register");
+        regButton.setFont(Menu.f2);
+        regButton.setBackground(Color.WHITE);
+        regButton.setBounds(400,375,200,60);
+        loginPanel.add(regButton);
 
         //add username entry field
         userNameField = new JTextField("Username");
@@ -42,13 +46,14 @@ public class Login extends JFrame
         userNameField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(userNameField.getText().equals("Username")) {
+                if (userNameField.getText().equals("Username")) {
                     userNameField.setText("");
                 }
             }
+
             @Override
             public void focusLost(FocusEvent e) {
-                if(userNameField.getText().equals("")){
+                if (userNameField.getText().equals("")) {
                     userNameField.setText("Username");
                 }
             }
@@ -65,14 +70,15 @@ public class Login extends JFrame
         passwordField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(new String(passwordField.getPassword()).equals("Password")) {
+                if (new String(passwordField.getPassword()).equals("Password")) {
                     passwordField.setText("");
                     passwordField.setEchoChar('*');
                 }
             }
+
             @Override
             public void focusLost(FocusEvent e) {
-                if(passwordField.getText().equals("")){
+                if (passwordField.getText().equals("")) {
                     passwordField.setText("Password");
                 }
             }
@@ -88,10 +94,5 @@ public class Login extends JFrame
         loginPanel.add(secretField);
 
 
-
-
-
-
-
-
+    }
 }
