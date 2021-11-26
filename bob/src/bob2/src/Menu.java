@@ -2,13 +2,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Properties;
 
 public class Menu extends JFrame implements ActionListener
 {
+    public static String version;
+    public static int resx;
+    public static int resy;
+
     private ImageIcon backgroundImage;
     private JLabel myLabel;
     public static Font f2 = new Font("SansSerif", Font.BOLD, 15);
     public Menu() {
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream("properties.ini"));
+
+
+        }
+
+        catch(Exception e) {
+        }
+
         //make panel
         JPanel menuPanel = new JPanel();
         menuPanel.setBackground(Color.black);
@@ -31,6 +46,8 @@ public class Menu extends JFrame implements ActionListener
         setButton.setFont(f2);
         setButton.setBackground(Color.WHITE);
         setButton.setBounds(400,375,200,60);
+        setButton.addActionListener(this);
+        setButton.setActionCommand("Settings Menu");
         menuPanel.add(setButton);
 
         //make Credits button to show the credits of the people that made the game
@@ -84,6 +101,10 @@ public class Menu extends JFrame implements ActionListener
             dispose();
         }
         if (e.getActionCommand().equals("Play Menu")) {
+            Login login = new Login();
+            dispose();
+        }
+        if (e.getActionCommand().equals("Settings Menu")) {
             Login login = new Login();
             dispose();
         }
