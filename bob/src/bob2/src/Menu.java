@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Properties;
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Class: Menu
  * Description: this class is the first window that acts as a gateway for the user to choose, either to play the game, change their settings around,
  * see the credits for the game or exit the window and not play the game.
