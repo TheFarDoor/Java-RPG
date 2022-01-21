@@ -2,11 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Objects;
 import java.util.Properties;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Class: Menu
- * Description: this class is the first window that acts as a gateway for the user to choose, either to play the game, change their settings around,
+ * Description: This class is the first window that acts as a gateway for the user to choose, either to play the game, change their settings around,
  * see the credits for the game or exit the window and not play the game.
  * Input: The user's button presses when they click the buttons on the window
  * Output: Depending on the user's input a series of actions will occur (e.g. when the 'Play' button is pressed a
@@ -19,8 +20,8 @@ public class Menu extends JFrame implements ActionListener
     public static int resx;
     public static int resy;
 
-    private ImageIcon backgroundImage;
-    private JLabel myLabel;
+    private ImageIcon backgroundImage_Mmenu;
+    private JLabel myLabel_Mmenu;
     public static Font f2 = new Font("SansSerif", Font.BOLD, 15);
     public Menu() {
         try {
@@ -75,7 +76,7 @@ public class Menu extends JFrame implements ActionListener
         exitButton.setActionCommand("Close Menu");
         menuPanel.add(exitButton);
 
-        //make Secret button, when pressed user enters hard mode
+        //make Secret button, when pressed user gains a special item
         JButton secretButton = new JButton();
         secretButton.setBackground(Color.BLACK);
         secretButton.setOpaque(false);
@@ -86,12 +87,12 @@ public class Menu extends JFrame implements ActionListener
 
         //set background image
         setLayout(new BorderLayout());
-        backgroundImage = new ImageIcon(this.getClass().getResource("/gronark_bgi_finished.png"));
-        myLabel = new JLabel(backgroundImage);
+        backgroundImage_Mmenu = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/gronark_bgi_finished.png")));
+        myLabel_Mmenu = new JLabel(backgroundImage_Mmenu);
         setLocationRelativeTo(null);
-        myLabel.setSize(800,590);
+        myLabel_Mmenu.setSize(800,590);
 
-        menuPanel.add(myLabel);
+        menuPanel.add(myLabel_Mmenu);
 
         //make frame
         setTitle("Gronark: The Rebirth");
