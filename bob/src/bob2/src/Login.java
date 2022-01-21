@@ -2,25 +2,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Objects;
+import java.util.Properties;
 
 public class Login extends JFrame
 {
+
     public static JTextField userNameField;
     public static JPasswordField passwordField;
+
+    private ImageIcon backgroundImage_login;
+    private JLabel myLabel_login;
     public Login() {
         //make panel
         JPanel loginPanel = new JPanel();
         loginPanel.setBackground(Color.black);
         loginPanel.setLayout(null);
 
-        //make frame
-        setTitle("Gronark: Login");
-        setVisible(true);
-        setBounds(555, 250, 800, 600);
-        Container c = getContentPane();
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        add(loginPanel);
+
 
         //make Login menu where if the user has a login in the database they will be logged into the game
         JButton loginButton = new JButton("Login");
@@ -93,6 +92,23 @@ public class Login extends JFrame
 
         loginPanel.add(secretField);
 
+        //set background image behind the login system
+        setLayout(new BorderLayout());
+        backgroundImage_login = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/gronark_hell_finished.png")));
+        myLabel_login = new JLabel(backgroundImage_login);
+        setLocationRelativeTo(null);
+        myLabel_login.setSize(800,590);
+
+        loginPanel.add(myLabel_login);
+
+        //make frame
+        setTitle("Gronark: Login");
+        setVisible(true);
+        setBounds(555, 250, 800, 600);
+        Container c = getContentPane();
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(loginPanel);
 
     }
 }
