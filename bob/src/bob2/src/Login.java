@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.Objects;
 import java.util.Properties;
 
-public class Login extends JFrame
+public class Login extends JFrame implements ActionListener
 {
 
     public static JTextField userNameField;
@@ -13,19 +13,39 @@ public class Login extends JFrame
 
     private ImageIcon backgroundImage_login;
     private JLabel myLabel_login;
+
+    //make function to open Game class
+    public void gameOpener() {
+        JFrame gameFrame = new JFrame();
+        Game game = new Game();
+        gameFrame.add(game);
+        gameFrame.setVisible(true);
+        gameFrame.setResizable(false);
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(555, 250, 756, 576);
+        Container c = getContentPane();
+        gameFrame.pack();
+    }
+
     public Login() {
         //make panel
         JPanel loginPanel = new JPanel();
         loginPanel.setBackground(Color.black);
         loginPanel.setLayout(null);
 
-
+        //create Game Frame
+        setTitle("Gronark: The Game");
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
 
         //make Login menu where if the user has a login in the database they will be logged into the game
         JButton loginButton = new JButton("Login");
         loginButton.setFont(Menu.f2);
         loginButton.setBackground(Color.WHITE);
         loginButton.setBounds(180,375,200,60);
+        loginButton.addActionListener(this);
+        loginButton.setActionCommand("Login Button");
         loginPanel.add(loginButton);
 
         //make Register button that adds the login of the user to the database
@@ -33,6 +53,8 @@ public class Login extends JFrame
         regButton.setFont(Menu.f2);
         regButton.setBackground(Color.WHITE);
         regButton.setBounds(400,375,200,60);
+        regButton.addActionListener(this);
+        regButton.setActionCommand("Register Button");
         loginPanel.add(regButton);
 
         //add username entry field
@@ -109,6 +131,15 @@ public class Login extends JFrame
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(loginPanel);
+
+    }
+    //make the functionality of each button
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Login Button")) {
+            gameOpener();
+            dispose();
+        }
 
     }
 }
