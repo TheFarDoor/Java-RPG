@@ -4,6 +4,14 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.Properties;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Class: Game
+ * Description: This class is responsible for giving the player the option to either login or register a new account, if they decided to login
+ * their input is compared to a database to see if their login is valid or it will add the new login to the database if they chose to register an account.
+ * Input: The user can enter their username and password and click a 'Login' button or a 'Register' button.
+ * Output: The login window will terminate and it will redirect the user to the main game.
+ */
+
 public class Game extends JPanel implements ActionListener, KeyListener, MouseListener
 {
 
