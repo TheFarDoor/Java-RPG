@@ -1,8 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.Properties;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Class: Game
@@ -12,70 +9,90 @@ import java.util.Properties;
  * Output: The login window will terminate and it will redirect the user to the main game.
  */
 
-public class Game extends JPanel implements ActionListener, KeyListener, MouseListener
-{
+public class Game extends JPanel implements Runnable {
 
     //SCREEN SETTINGS
     final int originalTileSize = 16; //16x16 tile
     final int scale = 3;
 
-    final int tileSize = originalTileSize * scale; //48x48 tile
+    final int tileSize = originalTileSize * scale; //48x48 tile (sprite is scaled to be bigger on a 1920x1080 screen
     final int maxScreenCol = 16;
     final int maxScreenRow = 12;
     final int screenWidth = tileSize * maxScreenCol; //756 pixels wide
     final int screenHeight = tileSize * maxScreenRow; //576 pixels tall
 
+    //Set FPS for the game
+    int FPS = 60;
+
+    KeyHandler keyH = new KeyHandler();
+    Thread gameThread;
+    Player player = new Player(this,keyH);
+
+    //Set player's default position
+    int playerX = 100;
+    int playerY = 100;
+    int playerSpeed = 4;
 
     public Game() {
 
-        setPreferredSize(new Dimension(screenWidth, screenHeight));
-        setBackground(Color.black);
-        setDoubleBuffered(true);
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setBackground(Color.black);
+        this.setDoubleBuffered(true);
+        this.addKeyListener(keyH);
+        this.setFocusable(true);
     }
 
+    public void startGameThread() {
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void run() {
 
+        double drawInterval = 1000000000/FPS; //0.01666 seconds between each sprite update
+        double nextDrawTime = System.nanoTime() + drawInterval;
+
+        while (gameThread != null) {
+
+            //Move the sprite in a different position
+            update();
+
+            //Draw the sprite again at updated position
+            repaint();
+
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime();
+                remainingTime = remainingTime/1000000;
+
+                if(remainingTime < 0){
+                    remainingTime = 0;
+                }
+
+                Thread.sleep((long) remainingTime);
+
+                nextDrawTime += drawInterval;
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-
+    public void update() { //Update the sprite's position
+        player.update();
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
+    public void paintComponent(Graphics g) { //Draw graphics onto the JPanel screen
 
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+
+        player.draw(g2);
+
+        g2.dispose();
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
 }
