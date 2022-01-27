@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 import java.util.Objects;
-import java.util.Properties;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Class: Login
@@ -27,11 +25,12 @@ public class Login extends JFrame implements ActionListener
         JFrame gameFrame = new JFrame();
         Game game = new Game();
         gameFrame.add(game);
+        game.startGameThread();
+        gameFrame.setTitle("Gronark");
         gameFrame.setVisible(true);
         gameFrame.setResizable(false);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(555, 250, 756, 576);
-        Container c = getContentPane();
+        gameFrame.setBounds(565, 250, 756,576);
         gameFrame.pack();
     }
 
@@ -40,12 +39,6 @@ public class Login extends JFrame implements ActionListener
         JPanel loginPanel = new JPanel();
         loginPanel.setBackground(Color.black);
         loginPanel.setLayout(null);
-
-        //create Game Frame
-        setTitle("Gronark: The Game");
-        setResizable(false);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
 
         //make Login menu where if the user has a login in the database they will be logged into the game
         JButton loginButton = new JButton("Login");
