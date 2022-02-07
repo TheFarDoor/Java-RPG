@@ -17,14 +17,12 @@ public class Login extends JFrame implements ActionListener
     public static JTextField userNameField;
     public static JPasswordField passwordField;
 
-    private ImageIcon backgroundImage_login;
-    private JLabel myLabel_login;
-
     //make function to open Game class
     public void gameOpener() {
         JFrame gameFrame = new JFrame();
         Game game = new Game();
         gameFrame.add(game);
+        game.setupGame();
         game.startGameThread();
         gameFrame.setTitle("Gronark");
         gameFrame.setVisible(true);
@@ -117,8 +115,8 @@ public class Login extends JFrame implements ActionListener
 
         //set background image behind the login system
         setLayout(new BorderLayout());
-        backgroundImage_login = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/gronark_hell_finished.png")));
-        myLabel_login = new JLabel(backgroundImage_login);
+        ImageIcon backgroundImage_login = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/gronark_hell_finished.png")));
+        JLabel myLabel_login = new JLabel(backgroundImage_login);
         setLocationRelativeTo(null);
         myLabel_login.setSize(800,590);
 

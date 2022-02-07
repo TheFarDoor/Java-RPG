@@ -16,8 +16,6 @@ import java.util.Properties;
 
 public class Menu extends JFrame implements ActionListener
 {
-    private ImageIcon backgroundImage_Mmenu;
-    private JLabel myLabel_Mmenu;
     public static Font f2 = new Font("SansSerif", Font.BOLD, 15);
     public Menu() {
         try {
@@ -27,7 +25,7 @@ public class Menu extends JFrame implements ActionListener
 
         }
 
-        catch(Exception e) {
+        catch(Exception ignored) {
         }
 
         //make panel
@@ -83,8 +81,8 @@ public class Menu extends JFrame implements ActionListener
 
         //set background image
         setLayout(new BorderLayout());
-        backgroundImage_Mmenu = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/gronark_bgi_finished.png")));
-        myLabel_Mmenu = new JLabel(backgroundImage_Mmenu);
+        ImageIcon backgroundImage_Mmenu = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/gronark_bgi_finished.png")));
+        JLabel myLabel_Mmenu = new JLabel(backgroundImage_Mmenu);
         setLocationRelativeTo(null);
         myLabel_Mmenu.setSize(800,590);
 
